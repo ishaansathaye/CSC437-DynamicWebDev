@@ -1,0 +1,76 @@
+/* Global Page Styles */
+body {
+  background-color: var(--color-background-page);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-base);
+  line-height: var(--line-height-base);
+  margin: 0;
+  padding: 0;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+  
+/* Header Styling */
+header {
+  background-color: var(--color-background-header);
+  color: var(--color-text-header);
+  padding: var(--spacing-md) var(--spacing-sm);
+  box-shadow: var(--shadow-header);
+  border-bottom: 3px solid var(--color-accent);
+}
+  
+/* List Styles */
+ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-gap);
+  margin: var(--spacing-sm) 0;
+  padding: 0;
+}
+li {
+  background-color: var(--color-background-card);
+  padding: var(--spacing-sm);
+  border-radius: var(--radius-base);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+li:hover {
+  background-color: var(--color-background-card-hover);
+  transform: translateY(-2px);
+}
+
+/* Accent Colors for Links */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+a:hover {
+  color: var(--color-link-hover);
+  background-color: var(--color-primary-light);
+  border-radius: var(--radius-base);
+}
+  
+/* Heading Accent */
+h1, h2, h3 {
+  color: var(--color-primary);
+  margin: var(--spacing-sm) 0 var(--spacing-xs);
+  font-weight: 600;
+}
+
+/* Button Styling */
+button, a.button {
+  color: var(--color-button-text);
+  background-color: var(--color-button-bg) !important;
+  border: none;
+  border-radius: var(--radius-base);
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+button:hover, a.button:hover {
+  background-color: var(--color-button-hover-bg);
+}

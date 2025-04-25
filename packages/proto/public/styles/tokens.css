@@ -1,0 +1,40 @@
+/* Design Tokens */
+:root {
+    /* Colors */
+    --color-background-page: #121212;
+    --color-background-header: #1c1c1c;
+    --color-background-card: #181818;       /* slightly softer dark for cards */
+    --color-background-card-hover: #242424; /* subtle lighter hover effect */
+
+    --color-text-primary: #ffffff;
+    --color-text-header: #ffffff;
+
+    --color-primary: #bf1e2e;           /* bold red for headers */
+    --color-accent: #03a9f4;            /* electric blue accent */
+    --color-link-hover: #03a9f4;        /* electric blue for link hover */
+
+    /* Light electric blue for hover effects */
+    --color-primary-light: rgba(3, 169, 244, 0.2); /* light blue for active effects */
+
+    /* Typography */
+    --font-family-base: 'Inter', system-ui, sans-serif;
+    --line-height-base: 1.6;
+  
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-gap: 1rem;
+  
+    /* Border Radius */
+    --radius-base: 6px;
+  
+    /* Shadows */
+    --shadow-header: 0 2px 4px rgba(0, 0, 0, 0.5);
+
+    /* Button Styles */
+    /* --color-button-text: var(--color-text-primary);
+    --color-button-bg: #2ecc71;         /* distinct green for buttons */
+    /* --color-button-hover-bg: rgba(3, 169, 244, 0.2); */
+  }
