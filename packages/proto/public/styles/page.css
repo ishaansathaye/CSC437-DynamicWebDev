@@ -2,7 +2,8 @@
 body {
   background-color: var(--color-background-page);
   color: var(--color-text-primary);
-  font-family: var(--font-family-base);
+  font-family: var(--font-family-body);
+  font-weight: 400;
   line-height: var(--line-height-base);
   margin: 0;
   padding: 0;
@@ -57,7 +58,9 @@ a:hover {
 h1, h2, h3 {
   color: var(--color-primary);
   margin: var(--spacing-sm) 0 var(--spacing-xs);
-  font-weight: 600;
+  font-family: var(--font-family-heading);
+  font-weight: 500;
+  line-height: var(--line-height-base); /* added line-height for headings */
 }
 
 /* Button Styling */
@@ -70,7 +73,18 @@ button, a.button {
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  font-family: var(--font-family-heading);
+  font-weight: 700;
 }
 button:hover, a.button:hover {
   background-color: var(--color-button-hover-bg);
 }
+
+svg.icon {
+    display: inline-block;
+    width: 2em;
+    height: 2em;
+    vertical-align: middle;
+    fill: currentColor;      /* makes icon inherit text color */
+    margin-right: 0.5em;     /* a little space before the label */
+  }

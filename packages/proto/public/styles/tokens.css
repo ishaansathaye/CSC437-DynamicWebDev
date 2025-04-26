@@ -1,5 +1,10 @@
 /* Design Tokens */
 :root {
+    /* Typography */
+    --font-family-body: 'Roboto', system-ui, sans-serif;
+    --font-family-heading: 'Oswald', system-ui, sans-serif;
+    --line-height-base: 1.6;
+
     /* Colors */
     --color-background-page: #121212;
     --color-background-header: #1c1c1c;
@@ -15,10 +20,6 @@
 
     /* Light electric blue for hover effects */
     --color-primary-light: rgba(3, 169, 244, 0.2); /* light blue for active effects */
-
-    /* Typography */
-    --font-family-base: 'Inter', system-ui, sans-serif;
-    --line-height-base: 1.6;
   
     /* Spacing */
     --spacing-xs: 0.5rem;
