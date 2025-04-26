@@ -2,65 +2,173 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
-    <title>Workout - Full Body Strength Training</title>
+
+    <!-- Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&family=Oswald:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS Reset -->
+    <link rel="stylesheet" href="/styles/reset.css" />
+
+    <!-- Design Tokens & Page Styles -->
     <link rel="stylesheet" href="/styles/tokens.css" />
     <link rel="stylesheet" href="/styles/page.css" />
+
+    <title>GymTracker - Full Body Strength Training</title>
   </head>
   <body>
-    <h1>Workout: Full Body Strength Training</h1>
-    <p><strong>Date:</strong> 2025-04-10</p>
-    <p><strong>Duration:</strong> 60 minutes</p>
-    <p>
-      <strong>Description:</strong> An intensive workout covering strength,
-      cardio, and flexibility exercises.
-    </p>
+    <!-- Site Header -->
+    <header class="site-header container">
+      <!-- Branding -->
+      <!-- <div class="branding">
+        <img src="/images/logo.svg" alt="GymTracker logo" class="logo" />
+        <span class="app-name">GymTracker</span>
+      </div> -->
 
-    <h2>Includes Exercises</h2>
-    <ul>
-      <li><a href="exercise1.html">
-        <svg class="icon">
-            <use href="/icons/gym.svg#icon-bench-press"></use>
+      <!-- Page Title -->
+      <h1 class="page-title">Full Body Strength Training</h1>
+
+      <!-- Navigation -->
+      <nav class="header-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <!-- <li><a href="workouts.html">Workouts</a></li> -->
+          <li><a href="nutrition.html">Nutrition</a></li>
+        </ul>
+      </nav>
+
+      <!-- User Info -->
+      <!-- <div class="user-info">
+        <span class="user-name">Ishaan</span>
+        <img src="/images/avatar.jpg" alt="Your avatar" class="avatar" />
+      </div> -->
+    </header>
+
+    <!-- Page Grid -->
+    <div class="page-grid">
+      <!-- Sidebar for now -->
+      <aside class="sidebar">
+        <nav class="sidebar-nav">
+          <ul>
+            <li><a href="index.html">Overview</a></li>
+            <li><a href="exercise1.html">Bench Press</a></li>
+            <li><a href="exercise2.html">Squats</a></li>
+            <li><a href="nutrition.html">Nutrition</a></li>
+            <li><a href="recovery.html">Recovery</a></li>
+          </ul>
+        </nav>
+      </aside>
+      <!-- Main Content -->
+      <main class="content">
+      <section>
+        <h2>Workout Details</h2>
+        <p><strong>Date:</strong> 2025-04-10</p>
+        <p><strong>Duration:</strong> 60 minutes</p>
+        <p>
+          <strong>Description:</strong> An intensive workout covering strength,
+          cardio, and flexibility exercises.
+        </p>
+      </section>
+
+      <section>
+        <h2>
+          <svg class="icon">
+            <use href="/icons/gym.svg#icon-dumbbell" />
           </svg>
-        Bench Press</a></li>
-      <li><a href="exercise2.html">
-        <svg class="icon">
-            <use href="/icons/gym.svg#icon-squat-rack"></use>
+          Includes Exercises
+        </h2>
+        <ul>
+          <li>
+            <a href="exercise1.html">
+              <svg class="icon">
+                <use href="/icons/gym.svg#icon-bench-press" />
+              </svg>
+              Bench Press
+            </a>
+          </li>
+          <li>
+            <a href="exercise2.html">
+              <svg class="icon">
+                <use href="/icons/gym.svg#icon-squat-rack" />
+              </svg>
+              Squats
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>
+          <svg class="icon">
+            <use href="/icons/gym.svg#icon-nutrition" />
           </svg>
-        Squats</a></li>
-    </ul>
+          Fueled by Nutrition
+        </h2>
+        <ul>
+          <li>
+            <a href="nutrition.html">
+              <svg class="icon">
+                <use href="/icons/gym.svg#icon-nutrition" />
+              </svg>
+              Post-Workout Meal
+            </a>
+          </li>
+        </ul>
+      </section>
 
-    <h2>Fueled by Nutrition</h2>
-    <ul>
-      <li><a href="nutrition.html">
-        <svg class="icon">
-            <use href="/icons/gym.svg#icon-nutrition"></use>
+      <section>
+        <h2>
+          <svg class="icon">
+            <use href="/icons/gym.svg#icon-recovery" />
           </svg>
-        Post-Workout Meal</a></li>
-    </ul>
+          Followed by Recovery
+        </h2>
+        <ul>
+          <li>
+            <a href="recovery.html">
+              <svg class="icon">
+                <use href="/icons/gym.svg#icon-recovery" />
+              </svg>
+              Cool Down &amp; Stretching
+            </a>
+          </li>
+        </ul>
+      </section>
 
-    <h2>Followed by Recovery</h2>
-    <ul>
-      <li><a href="recovery.html">
-        <svg class="icon">
-            <use href="/icons/gym.svg#icon-recovery"></use>
-          </svg>
-        Cool Down &amp; Stretching</a></li>
-    </ul>
+      <section>
+        <h2>Equipment Used</h2>
+        <ul>
+          <li>
+            <a href="equipment_bench.html">
+              <svg class="icon">
+                <use href="/icons/gym.svg#icon-bench-press" />
+              </svg>
+              Bench and Weights
+            </a>
+          </li>
+          <li>
+            <a href="equipment_squat.html">
+              <svg class="icon">
+                <use href="/icons/gym.svg#icon-squat-rack" />
+              </svg>
+              Squat Rack
+            </a>
+          </li>
+        </ul>
+      </section>
 
-    <h2>Equipment Used</h2>
-    <ul>
-      <li><a href="equipment_bench.html">Bench and Weights</a></li>
-      <li><a href="equipment_squat.html">Squat Rack</a></li>
-    </ul>
-
-    <h2>Targeted Muscle Groups</h2>
-    <ul>
-      <li><a href="musclegroup_chest.html">Chest</a></li>
-      <li><a href="musclegroup_legs.html">Legs</a></li>
-    </ul>
+      <section>
+        <h2>Targeted Muscle Groups</h2>
+        <ul>
+          <li><a href="musclegroup_chest.html">Chest</a></li>
+          <li><a href="musclegroup_legs.html">Legs</a></li>
+        </ul>
+      </section>
+      </main>
+    </div> <!-- end .page-grid -->
   </body>
 </html>
