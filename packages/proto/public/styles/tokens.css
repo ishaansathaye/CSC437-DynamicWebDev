@@ -39,3 +39,41 @@
     --color-button-bg: #2ecc71;         /* distinct green for buttons */
     /* --color-button-hover-bg: rgba(3, 169, 244, 0.2); */
   }
+
+/* Light Mode Overrides */
+body.light-mode {
+  --color-background-page: #ffffff;
+  --color-background-header: #f0f0f0;
+  --color-background-card: #fafafa;
+  --color-background-card-hover: #f5f5f5;
+
+  --color-text-primary: #1a1a1a;
+  --color-text-header: #1a1a1a;
+
+  --color-primary: #bf1e2e;       /* keep header red */
+  --color-accent: #005f99;        /* darker accent for light bg */
+  --color-link-hover: #cc0000;     /* red hover on links */
+
+  --color-primary-light: rgba(191, 30, 46, 0.1);
+}
+
+/* Dark Mode Overrides */
+body.dark-mode {
+  /* swap page background and text */
+  --color-background-page: #ffffff;
+  --color-text-primary: #121212;
+
+  /* swap header background and header text */
+  --color-background-header: #ffffff;
+  --color-text-header: #121212;
+
+  /* invert card backgrounds */
+  --color-background-card: #f5f5f5;
+  --color-background-card-hover: #e0e0e0;
+
+  /* keep accent tokens or adjust as desired */
+  --color-primary: #03a9f4;
+  --color-accent: #bf1e2e;
+  --color-link-hover: #536dfe;
+  --color-primary-light: rgba(59, 161, 244, 0.1);
+}
