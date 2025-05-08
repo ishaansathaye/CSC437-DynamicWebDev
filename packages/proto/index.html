@@ -84,26 +84,24 @@
           <svg class="icon">
             <use href="/icons/gym.svg#icon-dumbbell" />
           </svg>
-          Includes Exercises
+        Exercises
         </h2>
-        <exercise-card
-          type="Strength"
-          sets="3"
-          reps="10"
-          equipment-href="equipment_bench.html"
-          muscle-href="musclegroup_chest.html"
+        <ul>
+        <card-element
+          name="Bench Press"
+          icon="/icons/gym.svg#icon-bench-press"
+          exercise-href="exercise1.html"
         >
-          Bench Press
-        </exercise-card>
-        <exercise-card
-          type="Strength"
-          sets="4"
-          reps="12"
-          equipment-href="equipment_squat.html"
-          muscle-href="musclegroup_legs.html"
+          <span slot="name">Bench Press</span>
+        </card-element>
+        <card-element
+            icon="/icons/gym.svg#icon-squat-rack"
+            exercise-href="exercise2.html"
         >
-          Squats
-        </exercise-card>
+          <span slot="name">Squats</span>
+        </card-element>
+        </ul>
+        
       </section>
 
       <section>
@@ -114,16 +112,16 @@
           Fueled by Nutrition
         </h2>
         <ul>
-          <li>
-            <a href="nutrition.html">
-              <svg class="icon">
-                <use href="/icons/gym.svg#icon-nutrition" />
-              </svg>
-              Post-Workout Meal
-            </a>
-          </li>
+        <card-element
+          icon="/icons/gym.svg#icon-nutrition"
+          exercise-href="nutrition.html"
+        >
+            <span slot="name">Post-Workout Meal</span>
+        </card-element>
         </ul>
       </section>
+
+      
 
       <section>
         <h2>
@@ -133,36 +131,30 @@
           Followed by Recovery
         </h2>
         <ul>
-          <li>
-            <a href="recovery.html">
-              <svg class="icon">
-                <use href="/icons/gym.svg#icon-recovery" />
-              </svg>
-              Cool Down &amp; Stretching
-            </a>
-          </li>
+          <card-element
+            icon="/icons/gym.svg#icon-recovery"
+            exercise-href="recovery.html"
+          >
+            <span slot="name">Cool Down &amp; Stretching</span>
+          </card-element>
         </ul>
       </section>
 
       <section>
         <h2>Equipment Used</h2>
         <ul>
-          <li>
-            <a href="equipment_bench.html">
-              <svg class="icon">
-                <use href="/icons/gym.svg#icon-bench-press" />
-              </svg>
-              Bench and Weights
-            </a>
-          </li>
-          <li>
-            <a href="equipment_squat.html">
-              <svg class="icon">
-                <use href="/icons/gym.svg#icon-squat-rack" />
-              </svg>
-              Squat Rack
-            </a>
-          </li>
+            <card-element
+              icon="/icons/gym.svg#icon-bench-press"
+              exercise-href="equipment_bench.html"
+            >
+                <span slot="name">Bench and Weights</span>
+            </card-element>
+          <card-element
+            icon="/icons/gym.svg#icon-squat-rack"
+            exercise-href="equipment_squat.html"
+            >
+                <span slot="name">Squat Rack</span>
+            </card-element>
         </ul>
       </section>
 
@@ -175,6 +167,14 @@
       </section>
       </main>
     </div> <!-- end .page-grid -->
+    <script type="module">
+        import { define } from "@calpoly/mustang";
+        import { ExerciseElement } from "/src/card.js";
+  
+        define({
+          "card-element": ExerciseElement
+        });
+      </script>
     <script>
       function dispatchDarkMode(event) {
         event.stopPropagation();
