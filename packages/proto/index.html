@@ -79,84 +79,7 @@
         </p>
       </section>
 
-      <section>
-        <h2>
-          <svg class="icon">
-            <use href="/icons/gym.svg#icon-dumbbell" />
-          </svg>
-        Exercises
-        </h2>
-        <ul>
-        <card-element
-          name="Bench Press"
-          icon="/icons/gym.svg#icon-bench-press"
-          exercise-href="exercise1.html"
-        >
-          <span slot="name">Bench Press</span>
-        </card-element>
-        <card-element
-            icon="/icons/gym.svg#icon-squat-rack"
-            exercise-href="exercise2.html"
-        >
-          <span slot="name">Squats</span>
-        </card-element>
-        </ul>
-        
-      </section>
-
-      <section>
-        <h2>
-          <svg class="icon">
-            <use href="/icons/gym.svg#icon-nutrition" />
-          </svg>
-          Fueled by Nutrition
-        </h2>
-        <ul>
-        <card-element
-          icon="/icons/gym.svg#icon-nutrition"
-          exercise-href="nutrition.html"
-        >
-            <span slot="name">Post-Workout Meal</span>
-        </card-element>
-        </ul>
-      </section>
-
-      
-
-      <section>
-        <h2>
-          <svg class="icon">
-            <use href="/icons/gym.svg#icon-recovery" />
-          </svg>
-          Followed by Recovery
-        </h2>
-        <ul>
-          <card-element
-            icon="/icons/gym.svg#icon-recovery"
-            exercise-href="recovery.html"
-          >
-            <span slot="name">Cool Down &amp; Stretching</span>
-          </card-element>
-        </ul>
-      </section>
-
-      <section>
-        <h2>Equipment Used</h2>
-        <ul>
-            <card-element
-              icon="/icons/gym.svg#icon-bench-press"
-              exercise-href="equipment_bench.html"
-            >
-                <span slot="name">Bench and Weights</span>
-            </card-element>
-          <card-element
-            icon="/icons/gym.svg#icon-squat-rack"
-            exercise-href="equipment_squat.html"
-            >
-                <span slot="name">Squat Rack</span>
-            </card-element>
-        </ul>
-      </section>
+      <cards-list src="/data/cards.json"></cards-list>
 
       <section>
         <h2>Targeted Muscle Groups</h2>
@@ -170,9 +93,11 @@
     <script type="module">
         import { define } from "@calpoly/mustang";
         import { ExerciseElement } from "/src/card.js";
+        import { CardsListElement } from "/src/cards-list.js";
   
         define({
-          "card-element": ExerciseElement
+          "card-element": ExerciseElement,
+          "cards-list": CardsListElement
         });
       </script>
     <script>

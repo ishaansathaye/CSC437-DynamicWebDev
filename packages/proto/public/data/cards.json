@@ -1,0 +1,40 @@
+{
+    "exercises": [
+      {
+        "name": "Bench Press",
+        "icon": "/icons/gym.svg#icon-bench-press",
+        "href": "exercise1.html"
+      },
+      {
+        "name": "Squats",
+        "icon": "/icons/gym.svg#icon-squat-rack",
+        "href": "exercise2.html"
+      }
+    ],
+    "nutrition": [
+      {
+        "name": "Post-Workout Meal",
+        "icon": "/icons/gym.svg#icon-nutrition",
+        "href": "nutrition.html"
+      }
+    ],
+    "recovery": [
+      {
+        "name": "Cool Down & Stretching",
+        "icon": "/icons/gym.svg#icon-recovery",
+        "href": "recovery.html"
+      }
+    ],
+    "equipment": [
+      {
+        "name": "Bench and Weights",
+        "icon": "/icons/gym.svg#icon-bench-press",
+        "href": "equipment_bench.html"
+      },
+      {
+        "name": "Squat Rack",
+        "icon": "/icons/gym.svg#icon-squat-rack",
+        "href": "equipment_squat.html"
+      }
+    ]
+  }
