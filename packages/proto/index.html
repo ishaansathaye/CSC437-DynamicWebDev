@@ -21,101 +21,78 @@
     <title>GymTracker - Full Body Strength Training</title>
   </head>
   <body>
-    <!-- Site Header -->
-    <header class="site-header container">
-      <!-- Branding -->
-      <!-- <div class="branding">
-        <img src="/images/logo.svg" alt="GymTracker logo" class="logo" />
-        <span class="app-name">GymTracker</span>
-      </div> -->
+    <mu-auth provides="strength:auth">
+        <blz-header></blz-header>
 
-      <!-- Page Title -->
-      <h1 class="page-title">Full Body Strength Training</h1>
+        <!-- Page Grid -->
+        <div class="page-grid">
+        <!-- Sidebar for now -->
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+            <ul>
+                <li><a href="index.html">Overview</a></li>
+                <li><a href="exercise1.html">Bench Press</a></li>
+                <li><a href="exercise2.html">Squats</a></li>
+                <li><a href="nutrition.html">Nutrition</a></li>
+                <li><a href="recovery.html">Recovery</a></li>
+            </ul>
+            </nav>
+        </aside>
+        <!-- Main Content -->
+        <main class="content">
+        <section>
+            <h2>Workout Details</h2>
+            <p><strong>Date:</strong> 2025-04-10</p>
+            <p><strong>Duration:</strong> 60 minutes</p>
+            <p>
+            <strong>Description:</strong> An intensive workout covering strength,
+            cardio, and flexibility exercises.
+            </p>
+        </section>
 
-      <!-- Navigation -->
-      <nav class="header-nav">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <!-- <li><a href="workouts.html">Workouts</a></li> -->
-          <li><a href="nutrition.html">Nutrition</a></li>
-        </ul>
-      </nav>
+        <cards-list src="/api/cards"></cards-list>
+        
 
-      <label class="mode-switch" onchange="dispatchDarkMode(event)">
-        <input type="checkbox" id="mode-toggle" autocomplete="off" />
-        Light mode
-      </label>
+        <section>
+            <h2>Targeted Muscle Groups</h2>
+            <ul>
+            <li><a href="musclegroup_chest.html">Chest</a></li>
+            <li><a href="musclegroup_legs.html">Legs</a></li>
+            </ul>
+        </section>
+        </main>
+        </div> <!-- end .page-grid -->
+        <script type="module">
+          import { define, Auth } from "@calpoly/mustang";
+          import { HeaderElement } from "/src/header.js";
+          import { ExerciseElement } from "/src/card.js";
+          import { CardsListElement } from "/src/cards-list.js";
 
-      <!-- User Info -->
-      <!-- <div class="user-info">
-        <span class="user-name">Ishaan</span>
-        <img src="/images/avatar.jpg" alt="Your avatar" class="avatar" />
-      </div> -->
-    </header>
+          define({
+            "mu-auth": Auth.Provider,
+            "blz-header": HeaderElement,
+            "exercise-card": ExerciseElement,
+            "cards-list": CardsListElement
+          });
 
-    <!-- Page Grid -->
-    <div class="page-grid">
-      <!-- Sidebar for now -->
-      <aside class="sidebar">
-        <nav class="sidebar-nav">
-          <ul>
-            <li><a href="index.html">Overview</a></li>
-            <li><a href="exercise1.html">Bench Press</a></li>
-            <li><a href="exercise2.html">Squats</a></li>
-            <li><a href="nutrition.html">Nutrition</a></li>
-            <li><a href="recovery.html">Recovery</a></li>
-          </ul>
-        </nav>
-      </aside>
-      <!-- Main Content -->
-      <main class="content">
-      <section>
-        <h2>Workout Details</h2>
-        <p><strong>Date:</strong> 2025-04-10</p>
-        <p><strong>Duration:</strong> 60 minutes</p>
-        <p>
-          <strong>Description:</strong> An intensive workout covering strength,
-          cardio, and flexibility exercises.
-        </p>
-      </section>
-
-      <cards-list src="/data/cards.json"></cards-list>
-    
-
-      <section>
-        <h2>Targeted Muscle Groups</h2>
-        <ul>
-          <li><a href="musclegroup_chest.html">Chest</a></li>
-          <li><a href="musclegroup_legs.html">Legs</a></li>
-        </ul>
-      </section>
-      </main>
-    </div> <!-- end .page-grid -->
-    <script type="module">
-        import { define } from "@calpoly/mustang";
-        import { ExerciseElement } from "/src/card.js";
-        import { CardsListElement } from "/src/cards-list.js";
-  
-        define({
-          "card-element": ExerciseElement,
-          "cards-list": CardsListElement
-        });
-      </script>
-    <script>
-      function dispatchDarkMode(event) {
-        event.stopPropagation();
-        const checked = event.target.checked;
-        document.body.dispatchEvent(new CustomEvent('darkmode:toggle', {
-          detail: { checked }
-        }));
-      }
-      document.body.addEventListener('darkmode:toggle', event => {
-        if (event.detail.checked) {
-          event.currentTarget.classList.add('dark-mode');
-        } else {
-          event.currentTarget.classList.remove('dark-mode');
+          HeaderElement.initializeOnce();
+        </script>
+        <script>
+        function dispatchDarkMode(event) {
+            event.stopPropagation();
+            const checked = event.target.checked;
+            document.body.dispatchEvent(new CustomEvent('darkmode:toggle', {
+            detail: { checked }
+            }));
         }
-      });
-    </script>
+        document.body.addEventListener('darkmode:toggle', event => {
+            if (event.detail.checked) {
+            event.currentTarget.classList.add('dark-mode');
+            } else {
+            event.currentTarget.classList.remove('dark-mode');
+            }
+        });
+        </script>
+    </mu-auth>
   </body>
 </html>

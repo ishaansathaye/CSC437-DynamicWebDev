@@ -1,23 +1,53 @@
 import { LitElement, html, css } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import reset from './styles/reset.js';
+import {
+  Auth, Observer,
+} from "@calpoly/mustang";
 
 interface CardItem {
-  name: string;
+  cardName: string;
   icon: string;
   href: string;
 }
 
-interface CardsData {
-  exercises: CardItem[];
-  nutrition: CardItem[];
-  recovery: CardItem[];
-  equipment: CardItem[];
-}
+// interface CardsData {
+//   exercises: CardItem[];
+//   nutrition: CardItem[];
+//   recovery: CardItem[];
+//   equipment: CardItem[];
+// }
 
 export class CardsListElement extends LitElement {
+
+    _authObserver = new Observer<Auth.Model>(this, "strength:auth");
+    _user?: Auth.User;
+
+    override connectedCallback() {
+    super.connectedCallback();
+    this._authObserver.observe((auth: Auth.Model) => {
+      this._user = auth.user;
+      if (this.src) this.hydrate(this.src);
+    });
+  }
+
+  get authorization(): { Authorization?: string } {
+    if (this._user && this._user.authenticated)
+      return {
+        Authorization:
+          `Bearer ${(this._user as Auth.AuthenticatedUser).token}`
+      };
+    else return {};
+  }
+  
   /** URL of the JSON data file */
   @property({ type: String }) src = '';
+
+    protected updated(changed: Map<string, any>) {
+        if (changed.has('src') && this.src && this._user?.authenticated) {
+            this.hydrate(this.src);
+        }
+    }
 
   /** Parsed sections from the JSON */
   @state() exercises: CardItem[] = [];
@@ -25,26 +55,25 @@ export class CardsListElement extends LitElement {
     @state() recovery: CardItem[] = [];
   @state() equipment: CardItem[] = [];
 
-  /** Fetch and hydrate as soon as the element is connected */
-  override connectedCallback() {
-    super.connectedCallback();
-    if (this.src) {
-      this.hydrate(this.src);
-    }
-  }
-
-  /** Load the JSON and split into the three state arrays */
+  /** Load the JSON and split into the four state arrays, using each item's `section` */
   private async hydrate(src: string) {
     try {
-      const res = await fetch(src);
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const data = (await res.json()) as CardsData;
-      this.exercises = data.exercises;
-      this.nutrition = data.nutrition;
-        this.recovery = data.recovery;
-      this.equipment = data.equipment;
+      const res = await fetch(src, {
+        headers: this.authorization
+      });
+      if (!res.ok) {
+        throw new Error(`HTTP ${res.status} fetching ${src}`);
+      }
+      // Expecting a flat array of cards, each with a "section" field
+      const all = (await res.json()) as Array<CardItem & { section: string }>;
+
+      // Partition by section
+      this.exercises = all.filter(item => item.section === "exercise");
+      this.nutrition  = all.filter(item => item.section === "nutrition");
+      this.recovery   = all.filter(item => item.section === "recovery");
+      this.equipment  = all.filter(item => item.section === "equipment");
     } catch (e) {
-      console.error('Failed to fetch cards data:', e);
+      console.error(`Failed to fetch cards data from ${src}:`, e);
     }
   }
 
@@ -58,12 +87,12 @@ export class CardsListElement extends LitElement {
         </h2>
         <ul>
           ${this.exercises.map(item => html`
-            <card-element preview
-              name="${item.name}"
+            <exercise-card preview
+              name="${item.cardName}"
               icon="${item.icon}"
               exercise-href="${item.href}">
-              <span slot="name">${item.name}</span>
-            </card-element>
+              <span slot="name">${item.cardName}</span>
+            </exercise-card>
           `)}
         </ul>
       </section>
@@ -75,12 +104,12 @@ export class CardsListElement extends LitElement {
         </h2>
         <ul>
           ${this.nutrition.map(item => html`
-            <card-element preview
-              name="${item.name}"
+            <exercise-card preview
+              name="${item.cardName}"
               icon="${item.icon}"
               exercise-href="${item.href}">
-              <span slot="name">${item.name}</span>
-            </card-element>
+              <span slot="name">${item.cardName}</span>
+            </exercise-card>
           `)}
         </ul>
       </section>
@@ -92,12 +121,12 @@ export class CardsListElement extends LitElement {
         </h2>
         <ul>
           ${this.recovery.map(item => html`
-            <card-element preview
-              name="${item.name}"
+            <exercise-card preview
+              name="${item.cardName}"
               icon="${item.icon}"
               exercise-href="${item.href}">
-              <span slot="name">${item.name}</span>
-            </card-element>
+              <span slot="name">${item.cardName}</span>
+            </exercise-card>
           `)}
         </ul>
       </section>
@@ -108,12 +137,12 @@ export class CardsListElement extends LitElement {
         </h2>
         <ul>
           ${this.equipment.map(item => html`
-            <card-element preview
-              name="${item.name}"
+            <exercise-card preview
+              name="${item.cardName}"
               icon="${item.icon}"
               exercise-href="${item.href}">
-              <span slot="name">${item.name}</span>
-            </card-element>
+              <span slot="name">${item.cardName}</span>
+            </exercise-card>
           `)}
         </ul>
       </section>
