@@ -1,40 +1,38 @@
-{
-    "exercises": [
+[
       {
-        "name": "Bench Press",
+        "cardName": "Bench Press",
         "icon": "/icons/gym.svg#icon-bench-press",
-        "href": "exercise1.html"
+        "href": "exercise1.html",
+        "section": "exercise"
       },
       {
-        "name": "Squats",
+        "cardName": "Squats",
         "icon": "/icons/gym.svg#icon-squat-rack",
-        "href": "exercise2.html"
-      }
-    ],
-    "nutrition": [
+        "href": "exercise2.html",
+        "section": "exercise"
+      },
       {
-        "name": "Post-Workout Meal",
+        "cardName": "Post-Workout Meal",
         "icon": "/icons/gym.svg#icon-nutrition",
-        "href": "nutrition.html"
-      }
-    ],
-    "recovery": [
-      {
-        "name": "Cool Down & Stretching",
-        "icon": "/icons/gym.svg#icon-recovery",
-        "href": "recovery.html"
-      }
-    ],
-    "equipment": [
-      {
-        "name": "Bench and Weights",
-        "icon": "/icons/gym.svg#icon-bench-press",
-        "href": "equipment_bench.html"
+        "href": "nutrition.html",
+        "section": "nutrition"
       },
       {
-        "name": "Squat Rack",
+        "cardName": "Cool Down & Stretching",
+        "icon": "/icons/gym.svg#icon-recovery",
+        "href": "recovery.html",
+        "section": "recovery"
+      },
+      {
+        "cardName": "Bench and Weights",
+        "icon": "/icons/gym.svg#icon-bench-press",
+        "href": "equipment_bench.html",
+        "section": "equipment"
+      },
+      {
+        "cardName": "Squat Rack",
         "icon": "/icons/gym.svg#icon-squat-rack",
-        "href": "equipment_squat.html"
+        "href": "equipment_squat.html",
+        "section": "equipment"
       }
-    ]
-  }
+]
