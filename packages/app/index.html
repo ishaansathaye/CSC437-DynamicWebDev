@@ -21,8 +21,10 @@
   <body>
     <mu-history provides="strength:history">
       <mu-auth provides="strength:auth" redirect="/login.html">
-        <strength-header></strength-header>
-        <mu-switch></mu-switch>
+        <mu-store provides="strength:model">
+            <strength-header></strength-header>
+            <mu-switch></mu-switch>
+        </mu-store>
       </mu-auth>
     </mu-history>
   </body>

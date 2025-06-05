@@ -1,94 +1,27 @@
-import { Auth, Observer } from "@calpoly/mustang";
-import { LitElement, html, css } from "lit";
+// app/src/views/exercise-view.ts
+import { View } from "@calpoly/mustang";
+import { html, css, TemplateResult } from "lit";
 import { property, state } from "lit/decorators.js";
+import { Card } from "server/models";
+import { Msg } from "../messages";
+import { Model } from "../model";
 
-interface Exercise {
-  cardName: string;
-  icon: string;
-  section: string;
-  sets: number;
-  reps: number;
-  description: string;
-  equipment: string;
-  targets: string;
-}
+export class ExerciseView extends View<Model, Msg> {
+  constructor() {
+    super("strength:model");
+  }
 
-export class ExerciseView extends LitElement {
-  /** The route will set `<exercise-view exercise-name="Bench%20Press">` */
+  /** The router will set `<exercise-view exercise-name="Bench%20Press">`. */
   @property({ attribute: "exercise-name" })
   exerciseName?: string;
 
-  /** Holds the fetched exercise data */
+  /** Expose `model.selectedCard` as a reactive state */
   @state()
-  private exercise?: Exercise;
-
-  /** Observe Auth to send JWT token if needed */
-  private _authObserver = new Observer<Auth.Model>(this, "strength:auth");
-  private _user?: Auth.User;
-
-  connectedCallback() {
-    super.connectedCallback();
-    // 1) Wait for auth to resolve
-    this._authObserver.observe(({ user }) => {
-      if (user && user.authenticated) {
-        this._user = user;
-        // 2) If we have an exerciseName, fetch it
-        if (this.exerciseName) {
-          this.hydrate(this.exerciseName);
-        }
-      }
-    });
+  private get exercise(): Card | undefined {
+    return this.model.selectedCard;
   }
 
-  updated(changed: Map<string, any>) {
-    // If route param changed, re-fetch
-    if (changed.has("exerciseName") && this.exerciseName &&
-      this._user) {
-      this.hydrate(this.exerciseName);
-    }
-  }
-
-  private async hydrate(name: string) {
-    const decoded = decodeURIComponent(name);
-    const url = `/api/cards/exercise/${encodeURIComponent(decoded)}`;
-    const headers = this._user ? Auth.headers(this._user) : {};
-    try {
-      const res = await fetch(url, { headers });
-      if (!res.ok) throw new Error(`HTTP ${res.status} fetching ${url}`);
-      this.exercise = (await res.json()) as Exercise;
-    } catch (e) {
-      console.error("Failed to load exercise:", e);
-    }
-  }
-
-  render() {
-    if (!this.exercise) {
-      return html`<p>Loading…</p>`;
-    }
-    const { cardName, icon, sets, reps, description, equipment, targets } = this.exercise;
-    return html`
-      <main class="page">
-        <header>
-          <h1>
-            <svg class="icon" viewBox="0 0 24 24">
-              <use href="${icon}"></use>
-            </svg>
-            ${cardName}
-          </h1>
-        </header>
-        <section>
-          <p><strong>Sets:</strong> ${sets}</p>
-          <p><strong>Reps:</strong> ${reps}</p>
-          <p><strong>Description:</strong> ${description}</p>
-          <p><strong>Equipment:</strong> ${equipment}</p>
-          <p><strong>Targets:</strong> ${targets}</p>
-          <p><a href="/app">← Back to Overview</a></p>
-        </section>
-      </main>
-    `;
-  }
-
-  static styles = [
+  static override styles = [
     css`
       :host {
         display: contents;
@@ -109,49 +42,91 @@ export class ExerciseView extends LitElement {
         margin: var(--spacing-sm) 0;
         color: var(--color-text-primary);
       }
-      h2 {
-        font-family: var(--font-display);
-        color: var(--color-accent);
-        margin-top: var(--spacing-lg);
-      }
-      ul {
-        list-style: none;
-        padding: 0;
-        margin: var(--spacing-sm) 0 var(--spacing-lg) 0;
-      }
-      ul li {
-        margin-bottom: var(--spacing-xs);
-      }
-      ul li a {
-        color: var(--color-text-primary);
-        text-decoration: none;
-        font-family: var(--font-body);
-      }
-      ul li a:hover {
-        color: var(--color-accent);
-      }
       svg.icon {
         display: inline-block;
         width: 2em;
         height: 2em;
         vertical-align: middle;
-        fill: currentColor;      /* icon inherits text color */
-        margin-right: 0.5em;     /* space before the label */
+        fill: currentColor;
+        margin-right: 0.5em;
       }
-      a {
+      a.back-link {
         display: inline-flex;
         align-items: center;
+        margin-top: var(--spacing-lg);
         color: var(--color-primary);
         text-decoration: none;
+        font-family: var(--font-body);
         transition: color 0.3s ease, background-color 0.3s ease;
       }
-      a:hover {
+      a.back-link:hover {
         color: var(--color-link-hover);
         background-color: var(--color-primary-light);
         border-radius: var(--radius-base);
       }
     `
   ];
-}
 
+  override render(): TemplateResult {
+    if (!this.exercise) {
+      return html`<p>Loading…</p>`;
+    }
+
+    // Destructure only what is guaranteed on `Card`
+    const { cardName, icon, description } = this.exercise;
+
+    // Now pull the extra fields via a safe cast to any
+    const extra = this.exercise as any;
+    const sets: number | undefined       = extra.sets;
+    const reps: number | undefined       = extra.reps;
+    const equipment: string | undefined  = extra.equipment;
+    const targets: string | undefined    = extra.targets;
+
+    return html`
+      <main class="page">
+        <header>
+          <h1>
+            <svg class="icon" viewBox="0 0 24 24">
+              <use href="${icon}"></use>
+            </svg>
+            ${cardName}
+          </h1>
+        </header>
+        <section>
+          ${sets !== undefined
+            ? html`<p><strong>Sets:</strong> ${sets}</p>`
+            : null}
+          ${reps !== undefined
+            ? html`<p><strong>Reps:</strong> ${reps}</p>`
+            : null}
+          <p><strong>Description:</strong> ${description}</p>
+          ${equipment !== undefined
+            ? html`<p><strong>Equipment:</strong> ${equipment}</p>`
+            : null}
+          ${targets !== undefined
+            ? html`<p><strong>Targets:</strong> ${targets}</p>`
+            : null}
+          <a class="back-link" @click=${() => location.assign("/app")}>
+            ← Back to Overview
+          </a>
+        </section>
+      </main>
+    `;
+  }
+
+  /** When `exercise-name` changes, ask the store to load that card. */
+  override attributeChangedCallback(name: string, oldVal: string | null, newVal: string | null) {
+  super.attributeChangedCallback(name, oldVal, newVal);
+  if (name === "exercise-name") {
+    console.log(`[exercise-view] attributeChangedCallback: exercise-name="${newVal}"`);
+    if (newVal) {
+      const decodedName = decodeURIComponent(newVal);
+      this.dispatchMessage([
+        "card/select",
+        { section: "exercise", cardName: decodedName }
+      ]);
+    }
+  }
+}
+}
 customElements.define("exercise-view", ExerciseView);

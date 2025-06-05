@@ -2,9 +2,13 @@ import {
   Auth,
   define,
   History,
-  Switch
+  Switch,
+  Store
 } from "@calpoly/mustang";
 import { html } from "lit";
+import { Msg } from "./messages";
+import { Model, init } from "./model";
+import update from "./update";
 
 // Import the component classes
 import { HeaderElement } from "./components/header.ts";
@@ -64,6 +68,13 @@ define({
   "mu-switch": class AppSwitch extends Switch.Element {
     constructor() {
       super(routes, "strength:history", "strength:auth");
+    }
+  },
+  "mu-store": class AppStore
+    extends Store.Provider<Model, Msg>
+  {
+    constructor() {
+      super(update, init, "strength:auth");
     }
   },
   "strength-header": HeaderElement,
