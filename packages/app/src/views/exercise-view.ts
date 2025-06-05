@@ -1,5 +1,6 @@
 // app/src/views/exercise-view.ts
-import { View } from "@calpoly/mustang";
+import { View, Form, define } from "@calpoly/mustang";
+import reset from "../styles/reset.css";
 import { html, css, TemplateResult } from "lit";
 import { property, state } from "lit/decorators.js";
 import { Card } from "server/models";
@@ -7,6 +8,8 @@ import { Msg } from "../messages";
 import { Model } from "../model";
 
 export class ExerciseView extends View<Model, Msg> {
+  static uses = define({ "mu-form": Form.Element });
+
   constructor() {
     super("strength:model");
   }
@@ -22,6 +25,7 @@ export class ExerciseView extends View<Model, Msg> {
   }
 
   static override styles = [
+    reset.styles,
     css`
       :host {
         display: contents;
@@ -93,12 +97,17 @@ export class ExerciseView extends View<Model, Msg> {
           </h1>
         </header>
         <section>
-          ${sets !== undefined
-            ? html`<p><strong>Sets:</strong> ${sets}</p>`
-            : null}
-          ${reps !== undefined
-            ? html`<p><strong>Reps:</strong> ${reps}</p>`
-            : null}
+          <mu-form
+            .initial=${{ sets, reps }}
+            @mu-form:submit=${this.handleFormSubmit}
+          >
+            ${sets !== undefined
+              ? html`<p><strong>Sets:</strong> <input name="sets" type="number" .value=${sets}></p>`
+              : null}
+            ${reps !== undefined
+              ? html`<p><strong>Reps:</strong> <input name="reps" type="number" .value=${reps}></p>`
+              : null}
+          </mu-form>
           <p><strong>Description:</strong> ${description}</p>
           ${equipment !== undefined
             ? html`<p><strong>Equipment:</strong> ${equipment}</p>`
@@ -113,6 +122,27 @@ export class ExerciseView extends View<Model, Msg> {
       </main>
     `;
   }
+
+ handleFormSubmit(event: CustomEvent) {
+  const detail = event.detail;
+  const sets = detail.sets !== undefined ? Number(detail.sets) : undefined;
+  const reps = detail.reps !== undefined ? Number(detail.reps) : undefined;
+
+  if (!this.exercise) return;
+
+  // Build a payload that sends only set/reps if defined:
+  const payload: any = {
+    section: "exercise",
+    cardName: this.exercise.cardName
+  };
+  if (sets !== undefined) payload.sets = sets;
+  if (reps !== undefined) payload.reps = reps;
+
+  this.dispatchMessage([
+    "card/update",
+    payload
+  ]);
+}
 
   /** When `exercise-name` changes, ask the store to load that card. */
   override attributeChangedCallback(name: string, oldVal: string | null, newVal: string | null) {

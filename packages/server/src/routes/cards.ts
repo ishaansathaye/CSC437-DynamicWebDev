@@ -43,13 +43,18 @@ router.post("/", (req: Request, res: Response) => {
 });
 
 // Update an existing card
-router.put("/:cardName", (req: Request, res: Response) => {
-  const { cardName } = req.params;
-  const cardData: Card = req.body;
-  Cards.update(cardName, cardData)
-    .then((card: Card) => res.json(card))
-    .catch((err) => res.status(500).send(err));
+router.put("/:section/:cardName", (req: Request, res: Response) => {
+  const { section, cardName } = req.params;
+  const cardData = req.body as Partial<Card>;
+
+  Cards.update(section, cardName, cardData)
+    .then((updatedCard) => res.json(updatedCard))
+    .catch((err) => {
+      console.error("Error in PUT /api/cards/:section/:cardName:", err);
+      res.status(500).send(err.message || err);
+    });
 });
+
 
 // Delete a card
 router.delete("/:cardName", (req: Request, res: Response) => {
