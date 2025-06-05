@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <!-- Web Fonts (copy from proto/index.html) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&amp;family=Oswald:wght@400;500;700&amp;display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS Reset & Tokens & Page CSS -->
+    <link rel="stylesheet" href="/styles/reset.css" />
+    <link rel="stylesheet" href="/styles/tokens.css" />
+    <link rel="stylesheet" href="/styles/page.css" />
+    <script type="module" src="/src/main"></script>
+
+  </head>
+  <body>
+    <mu-history provides="strength:history">
+      <mu-auth provides="strength:auth" redirect="/login.html">
+        <strength-header></strength-header>
+        <mu-switch></mu-switch>
+      </mu-auth>
+    </mu-history>
+  </body>
+</html>

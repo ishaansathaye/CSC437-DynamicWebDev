@@ -1,0 +1,58 @@
+/* Design Tokens */
+:root {
+    /* Typography */
+    --font-family-body: 'Roboto', system-ui, sans-serif;
+    --font-family-heading: 'Oswald', system-ui, sans-serif;
+    --line-height-base: 1.6;
+
+    /* Colors */
+    --color-background-page: #121212;
+    --color-background-header: #1c1c1c;
+    --color-background-card: #181818;       /* slightly softer dark for cards */
+    --color-background-card-hover: #242424; /* subtle lighter hover effect */
+
+    --color-text-primary: #ffffff;
+    --color-text-header: #ffffff;
+
+    --color-primary: #bf1e2e;           /* bold red for headers */
+    --color-accent: #03a9f4;            /* electric blue accent */
+    --color-link-hover: #03a9f4;        /* electric blue for link hover */
+
+    /* Light electric blue for hover effects */
+    --color-primary-light: rgba(3, 169, 244, 0.2); /* light blue for active effects */
+  
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-gap: 1rem;
+  
+    /* Border Radius */
+    --radius-base: 6px;
+  
+    /* Shadows */
+    --shadow-header: 0 2px 4px rgba(0, 0, 0, 0.5);
+
+    /* Button Styles */
+    /* --color-button-text: var(--color-text-primary);
+    --color-button-bg: #2ecc71;         /* distinct green for buttons */
+    /* --color-button-hover-bg: rgba(3, 169, 244, 0.2); */
+  }
+
+/* Light Mode Overrides */
+body.light-mode {
+  --color-background-page: #ffffff;
+  --color-background-header: #f0f0f0;
+  --color-background-card: #fafafa;
+  --color-background-card-hover: #f5f5f5;
+
+  --color-text-primary: #1a1a1a;
+  --color-text-header: #1a1a1a;
+
+  --color-primary: #bf1e2e;       /* keep header red */
+  --color-accent: #005f99;        /* darker accent for light bg */
+  --color-link-hover: #cc0000;     /* red hover on links */
+
+  --color-primary-light: rgba(191, 30, 46, 0.1);
+}

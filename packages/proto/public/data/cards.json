@@ -2,37 +2,48 @@
       {
         "cardName": "Bench Press",
         "icon": "/icons/gym.svg#icon-bench-press",
-        "href": "exercise1.html",
-        "section": "exercise"
+        "section": "exercise",
+        "sets": 3,
+        "reps": 10,
+        "description": "A compound exercise that targets the chest, shoulders, and triceps. Perform 3 sets of 10 reps with a weight that challenges you but allows for good form.",
+        "equipment": "Bench and Weights",
+        "targets": "Chest, Shoulders, Triceps"
       },
       {
         "cardName": "Squats",
         "icon": "/icons/gym.svg#icon-squat-rack",
-        "href": "exercise2.html",
-        "section": "exercise"
+        "section": "exercise",
+        "sets": 3,
+        "reps": 12,
+        "description": "A lower body exercise that targets the quadriceps, hamstrings, and glutes. Perform 3 sets of 12 reps with a weight that allows you to maintain proper form.",
+        "equipment": "Squat Rack",
+        "targets": "Quadriceps, Hamstrings, Glutes"
       },
       {
-        "cardName": "Post-Workout Meal",
+        "cardName": "High-Protein Post-Workout Meal",
         "icon": "/icons/gym.svg#icon-nutrition",
-        "href": "nutrition.html",
-        "section": "nutrition"
+        "section": "nutrition",
+        "description": "A balanced meal rich in protein and carbohydrates to aid recovery. Include lean protein (like chicken or fish), whole grains (like brown rice or quinoa), and plenty of vegetables.",
+        "calories": 600,
+        "macros": "40g protein, 60g carbs, 20g fat"
       },
       {
         "cardName": "Cool Down & Stretching",
         "icon": "/icons/gym.svg#icon-recovery",
-        "href": "recovery.html",
-        "section": "recovery"
+        "section": "recovery",
+        "duration": "10 minutes",
+        "description": "A series of stretches and cool-down exercises to promote recovery after a workout."
       },
       {
         "cardName": "Bench and Weights",
         "icon": "/icons/gym.svg#icon-bench-press",
-        "href": "equipment_bench.html",
-        "section": "equipment"
+        "section": "equipment",
+        "description": "A workout bench used for bench presses along with free weights for added resistance."
       },
       {
         "cardName": "Squat Rack",
         "icon": "/icons/gym.svg#icon-squat-rack",
-        "href": "equipment_squat.html",
-        "section": "equipment"
+        "section": "equipment",
+        "description": "A squat rack used for performing squats and other barbell exercises."
       }
 ]
