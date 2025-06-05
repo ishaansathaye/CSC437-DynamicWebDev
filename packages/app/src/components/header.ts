@@ -13,7 +13,7 @@ function toggleLightMode(ev: InputEvent) {
   const target = ev.target as HTMLInputElement;
   const checked = target.checked;
 
-  Events.relay(ev, "dark-mode", { checked });
+  Events.relay(ev, "light-mode", { checked });
 }
 
 export class HeaderElement extends LitElement {

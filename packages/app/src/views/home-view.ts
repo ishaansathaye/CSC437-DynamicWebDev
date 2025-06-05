@@ -165,15 +165,9 @@ svg.icon {
   align-items: start;
 }
 
-/* Sidebar spans 3 columns */
-.sidebar {
-  grid-column: 1 / span 3;
-  margin-left: var(--spacing-sm);
-}
-
-/* Main content spans remaining 9 columns */
+/* Remove sidebar; content now spans full width */
 .content {
-  grid-column: 4 / span 9;
+  grid-column: 1 / -1;
   display: flow-root;
   padding: var(--spacing-sm);
 }
@@ -183,11 +177,9 @@ svg.icon {
   .page-grid {
     grid-template-columns: repeat(8, 1fr);
   }
-  .sidebar {
-    grid-column: 1 / span 2;
-  }
+  /* Sidebar removed */
   .content {
-    grid-column: 3 / span 6;
+    grid-column: 1 / -1;
   }
 }
 
@@ -196,12 +188,9 @@ svg.icon {
   .page-grid {
     grid-template-columns: 1fr;
   }
-  .sidebar {
-    grid-column: auto;
-    margin-left: 0;
-  }
+  /* Sidebar removed */
   .content {
-    grid-column: auto;
+    grid-column: 1 / -1;
   }
 }`
   ];
